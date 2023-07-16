@@ -1,7 +1,10 @@
-import React from 'react'
+import React,{useState} from 'react'
 import Note from '../Note/Note'
 import './NoteContainer.css'
+import Search from '../Search/Search';
 const NoteContainer = (props) => {
+    const [searchText,setSearchText]=useState('');
+
     const reverseArray=(arr)=>{
         if (!arr || !Array.isArray(arr)) {
             return []; 
@@ -14,20 +17,29 @@ const NoteContainer = (props) => {
         return array;
     };
     const notes=reverseArray(props.notes);
+
+    const filteredNotes = notes.filter((item) =>
+    item.text.toLowerCase().includes(searchText.toLowerCase())
+  );
+
+
   return (
     <div className="note-container custom-scroll">
-        <h2>Notes</h2>
+        <h1>Notes</h1>
+        <Search handleSearchNote={setSearchText}/>
         <div className="note-container_notes">
-            {notes?.length>0 ?
-                notes.map((item)=>(
-                    <Note
-                    key={item.id}
-                    note={item}
-                    deleteNote ={props.deleteNote}
-                    updateText = {props.updateText}
-                    />
-                )): <h3>No Notes Present..</h3>
-            }   
+            {filteredNotes.length > 0 ? (
+          filteredNotes.map((item) => (
+            <Note
+              key={item.id}
+              note={item}
+              deleteNote={props.deleteNote}
+              updateText={props.updateText}
+            />
+          ))
+        ) : (
+          <h3>No Notes Present..</h3>
+        )}
         </div>
     </div>
   )

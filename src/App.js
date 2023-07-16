@@ -3,10 +3,11 @@ import { useEffect, useState } from 'react';
 import './App.css';
 import NoteContainer from './Components/NoteContainer/NoteContainer';
 import Sidebar from './Components/Sidebar/Sidebar';
+// import Search from './Components/Search/Search';
 
 function App() {
   const [notes,setNotes]= useState(JSON.parse(localStorage.getItem("notes-app")) || []);
-
+  
   const addNote=(color)=>{
     const tempNotes = [...notes];
 
@@ -47,6 +48,7 @@ function App() {
   return (
     <div className="App">
       <Sidebar addNote={addNote}/>
+      {/* <Search /> */}
       <NoteContainer notes={notes} deleteNote={deleteNote}
       updateText ={updateText}/>
     </div>

@@ -1,13 +1,19 @@
+
 .note-container{
     height: 100%;
     /* flex-wrap: wrap; */
+    flex-direction: column;
+    /* align-items: center;
+    padding: 20px; */
 }
-.note-container h2{
+.note-container h1{
     margin-bottom: 20px;
+    font-family: 'Great Vibes', cursive;
 }
 .note-container_notes{
     height: 90%;
-    display: flex;
-    flex-wrap: wrap;
-    gap: 20px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  max-width: 1260px;
 }
